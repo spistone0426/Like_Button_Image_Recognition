@@ -1,0 +1,58 @@
+import pyautogui
+import cv2 as cv
+import numpy
+import time
+
+path = r'LOCATION OF IMAGE'
+
+image = cv.imread(path)
+
+grayscale = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
+
+image_gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
+image_rgb = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+
+location =  pyautogui.locateCenterOnScreen(image,  grayscale = True)
+
+active_Like_Button_Path = r'LOCATION OF IMAGE'
+active_Like_Button_Image = cv.imread(active_Like_Button_Path)
+
+#Everything above is used for interacting with the Youtube Like Button
+#Everything Below outside of main is for interacting with Skip Ad Button
+
+skip_path = r'LOCATION OF IMAGE'
+
+skip_image = cv.imread(skip_path)
+
+skip_grayed = cv.cvtColor(skip_image, cv.COLOR_BGR2GRAY)
+skip_rgb = cv.cvtColor(skip_image, cv.COLOR_BGR2RGB)
+
+skip_location = pyautogui.locateCenterOnScreen(skip_image, grayscale = True)
+
+
+#below is the button for skipping multiple ads
+
+
+
+
+
+if __name__ == '__main__':
+
+    if pyautogui.locateCenterOnScreen(image) != None:
+        #cv.imshow('image', image)
+        print(pyautogui.locateCenterOnScreen(image,  grayscale = True))
+        cv.waitKey()  # IF this is not included the image does not load
+        pyautogui.moveTo(location)
+        pyautogui.click()
+
+    #else:
+
+
+    if pyautogui.locateCenterOnScreen(skip_image) != None:
+        time.sleep(5) #To wait for Skip Timeout to end
+
+        print(pyautogui.locateCenterOnScreen(skip_image, grayscale = True))
+        cv.waitKey()
+        pyautogui.moveTo(skip_location)
+    # if pyautogui.moveTo(skip_location) != None:
+        pyautogui.click()
